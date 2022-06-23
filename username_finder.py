@@ -10,6 +10,6 @@ df = df.drop(df[df['Descargarías VAI para usar una aplicación en vez de los gr
 
 df = df.reset_index(drop=True)
 
-usuariosig = df['Descargarías VAI para usar una aplicación en vez de los grupos de Whatsapp?'].tolist()
+usuariosig = df['Cuál es tu usuario en Instagram? (Siguenos para poder participar en la rifa.)'].tolist()
 
 print(usuariosig)
