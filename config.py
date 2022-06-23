@@ -5,4 +5,7 @@ file_dir = os.path.dirname(os.path.realpath('__file__'))
 sys.path.insert(0, os.path.abspath(file_path))
 
 encuesta = os.path.join(file_dir, 'encuesta.csv')
-notfollowed = os.path.join(file_dir, 'notfollowed.csv')
+notfollowers = os.path.join(file_dir, 'notfollowers.csv')
+vaicommunityfollowers = os.path.join(file_dir, 'vai.community-followers.csv')
+followers = os.path.join(file_dir, 'followers.csv')
+

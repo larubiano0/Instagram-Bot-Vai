@@ -26,12 +26,43 @@ for i in igusers:
 
         continue
 
+    if '-' in i: #ilegal char
+
+        continue
+
+    if any(x == i for x in ['NA','N.A.','.','N.A','...']):
+
+        continue
+
     if i[0] == '@': #Removes @ from users
 
         i = i[1:]
 
     realIGgusers.append(i)
 
-with open(notfollowed, 'w', newline='\n') as myfile:
-     wr = csv.writer(myfile, quoting=csv.QUOTE_ALL)
-     wr.writerow(realIGgusers)
+vcf = pd.read_csv(vaicommunityfollowers)
+followerslist = set(vcf['userName'].tolist()) #Hashed data type to find followers in O(1)
+
+final_list = []
+
+for i in realIGgusers:
+
+    if i not in followerslist:
+
+        final_list.append(i)
+
+with open(notfollowers, 'w', newline='\n') as myfile:
+    wr = csv.writer(myfile, quoting=csv.QUOTE_ALL)
+    wr.writerow(final_list)
+
+with open(followers, 'w', newline='\n') as myfile:
+    wr = csv.writer(myfile, quoting=csv.QUOTE_ALL)
+    wr.writerow(list(followerslist))
+
+print(f'IG users:{len(realIGgusers)}')
+print(f'Posible people to follow:{len(final_list)}')
+print(f'AlreadyFollowed:{len(followerslist)}')
+
+pd.read_csv('followers.csv', header=None).T.to_csv('followers.csv', header=False, index=False)
+pd.read_csv('notfollowers.csv', header=None).T.to_csv('notfollowers.csv', header=False, index=False)
+
