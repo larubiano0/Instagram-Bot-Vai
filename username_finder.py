@@ -12,4 +12,5 @@ df = df.reset_index(drop=True)
 
 usuariosig = df['Cuál es tu usuario en Instagram? (Siguenos para poder participar en la rifa.)'].tolist()
 
-print(usuariosig)
+for i in usuariosig:
+    pass
