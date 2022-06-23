@@ -1,4 +1,3 @@
 /__pycache__
 iglogin.env
-followed.csv
-notfollowed.csv
+*.csv
