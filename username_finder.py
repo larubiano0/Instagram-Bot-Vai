@@ -5,6 +5,11 @@ import pandas as pd
 import numpy as np
 import csv
 
+'''
+
+Este código se usó para limpiar los datos de los usuarios en possible_followers. Personas en la encuesta,
+que posiblemente no nos siguen. Posteriormente se encontró haciendo uso de followers_uwers, todos los usuarios
+que participaron en la encuesta (y descargarían VAI) pero no siguen a VAI
 
 df = pd.read_csv(encuesta)
 
@@ -65,3 +70,30 @@ print(f'AlreadyFollowed:{len(followerslist)}')
 
 pd.read_csv('followers.csv', header=None).T.to_csv('followers.csv', header=False, index=False)
 pd.read_csv('notfollowers.csv', header=None).T.to_csv('notfollowers.csv', header=False, index=False)
+
+'''
+
+
+pf = pd.read_csv(data['possible_followers'])
+possible_followers = set(pf['USER'].tolist())
+
+print(len(possible_followers))
+
+fu = pd.read_csv(data['followers_users'])
+followers_users = set(fu['USER'].tolist())
+
+not_followers = []
+
+for user in possible_followers:
+
+    if user not in followers_users:
+
+        not_followers.append(user)
+
+print(not_followers)
+
+print(len(not_followers))
+
+print(len(followers_users))
+
+print(len(possible_followers))
