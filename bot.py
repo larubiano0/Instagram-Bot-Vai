@@ -150,7 +150,7 @@ if __name__ == '__main__':
         """
         not_followers = bot.update(not_followers)
 
-        secs = randint(120,1200)
+        secs = choice([randint(120,1200),10800],p=[0.03,0.97]) #Toma un descanso de vez en cuando 
 
         print(f'Waiting {secs} seconds')
 
