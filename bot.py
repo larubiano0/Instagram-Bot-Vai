@@ -138,6 +138,8 @@ class Bot:
         Ampliar la lista de followers_users y followers_ids
         '''
 
+        return not_followers
+
 
 if __name__ == '__main__':
     bot = Bot()
