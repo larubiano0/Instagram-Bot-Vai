@@ -65,4 +65,3 @@ print(f'AlreadyFollowed:{len(followerslist)}')
 
 pd.read_csv('followers.csv', header=None).T.to_csv('followers.csv', header=False, index=False)
 pd.read_csv('notfollowers.csv', header=None).T.to_csv('notfollowers.csv', header=False, index=False)
-
