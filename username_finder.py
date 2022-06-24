@@ -97,3 +97,9 @@ print(len(not_followers))
 print(len(followers_users))
 
 print(len(possible_followers))
+
+with open(data['not_followers'], 'w', newline='\n') as myfile:
+    wr = csv.writer(myfile, quoting=csv.QUOTE_ALL)
+    wr.writerow(list(not_followers))
+
+pd.read_csv(data['not_followers'], header=None).T.to_csv(data['not_followers'], header=False, index=False) #Transposes the Matrix
