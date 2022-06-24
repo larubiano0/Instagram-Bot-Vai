@@ -2,9 +2,10 @@ from config import *
 from functions import *
 
 import os
+import pandas as pd
 from time import sleep
 from typing import Dict, List
-from random import randint
+from random import (randint,sample,choice)
 
 from instagrapi import Client
 from instagrapi.types import UserShort
@@ -12,6 +13,9 @@ from instagrapi.types import UserShort
 IG_USERNAME = iglogin['IGUSERNAME']
 IG_PASSWORD = iglogin['IGPASSWORD']
 IG_CREDENTIAL_PATH = './ig_settings.json'
+
+nf = pd.read_csv(data['not_followers'])
+not_followers = nf['USER'].tolist()
 
 class Bot:
     _cl = None
@@ -113,20 +117,47 @@ class Bot:
         following = self._cl.user_following(self._cl.user_id, amount=amount)
         return [user.username for user in following.values()]
     
-    def update(self):
+    def update(self, not_followers):
         """
         Do something
         """
-        pass
+        usuario = not_followers[0]
+
+        if self.follow_by_username(usuario):
+
+            print(f'{usuario} followed with success')
+
+        else: 
+
+            print(f'There has been a problem while trying to follow {usuario}')
+
+        not_followers = not_followers[1:] #Removes from the list the first one
+
+        '''
+        TODO
+        Ampliar la lista de followers_users y followers_ids
+        '''
+
 
 if __name__ == '__main__':
     bot = Bot()
-
-    bot.follow_by_username('futbot__')
 
     while True:
         """
         Infnit loop
         """
-        bot.update()
-        sleep(randint(120,1200)) #In seconds
+        not_followers = bot.update(not_followers)
+
+        secs = randint(120,1200)
+
+        print(f'Waiting {secs} seconds')
+
+        sleep(secs) #In seconds
+
+        if len(not_followers) == 0:
+
+            print('Everyone was followed')
+
+            break
+
+            
