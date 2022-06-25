@@ -14,8 +14,8 @@ IG_USERNAME = iglogin['IGUSERNAME']
 IG_PASSWORD = iglogin['IGPASSWORD']
 IG_CREDENTIAL_PATH = './ig_settings.json'
 
-nf = pd.read_csv(data['not_followers'])
-not_followers = nf['USER'].tolist()
+nf = pd.read_csv(data['not_followers']) #Dataset
+not_followers = nf['userName'].tolist()
 
 class Bot:
     _cl = None
@@ -41,6 +41,7 @@ class Bot:
         bool
             A boolean value
         """
+        
         userid = self._cl.user_id_from_username(username)
         return self._cl.user_follow(userid)
 
@@ -119,24 +120,27 @@ class Bot:
     
     def update(self, not_followers):
         """
-        Do something
+        Follows first user in not_followers
+        Parameters
+        ----------
+        not_followers: list
+            List of Instagram usernames
+        Returns
+        -------
+        List[str]
+            List of Instagram usernames, removing the first user
         """
-        usuario = not_followers[0]
+        username = not_followers[0]
 
-        if self.follow_by_username(usuario):
+        if self.follow_by_username(username):
 
-            print(f'{usuario} followed with success')
+            print(f'{username} followed with success')
 
         else: 
 
-            print(f'There has been a problem while trying to follow {usuario}')
+            print(f'There has been a problem while trying to follow {username}')
 
-        not_followers = not_followers[1:] #Removes from the list the first one
-
-        '''
-        TODO
-        Ampliar la lista de followers_users y followers_ids
-        '''
+        not_followers = not_followers[1:] #Removes the first one from the list
 
         return not_followers
 
