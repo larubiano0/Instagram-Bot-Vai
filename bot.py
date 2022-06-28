@@ -1,4 +1,3 @@
-from traceback import print_exception
 from config import *
 from functions import *
 
