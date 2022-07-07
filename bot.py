@@ -5,7 +5,7 @@ import os
 import pandas as pd
 from time import sleep
 from typing import Dict, List
-from random import (randint,sample,choice)
+from random import (randint,sample,choices)
 
 from instagrapi import Client
 from instagrapi.types import UserShort
@@ -14,7 +14,7 @@ IG_USERNAME = iglogin['IGUSERNAME']
 IG_PASSWORD = iglogin['IGPASSWORD']
 IG_CREDENTIAL_PATH = './ig_settings.json'
 
-nf = pd.read_csv(data['not_followers']) #Dataset
+nf = pd.read_csv(data['prueba']) #Dataset
 not_followers = nf['userName'].tolist()
 
 class Bot:
@@ -142,6 +142,13 @@ class Bot:
 
         not_followers = not_followers[1:] #Removes the first one from the list
 
+
+        #TODO correct expected value
+        #TODO corregir lista
+        #TODO maximum amounts of followers per csv
+        #TODO unfollow protocol
+        #TODO active users
+
         return not_followers
 
 
@@ -154,7 +161,7 @@ if __name__ == '__main__':
         """
         not_followers = bot.update(not_followers)
 
-        secs = choice([randint(120,1200),10800],p=[0.03,0.97]) #Takes a break once in a while
+        secs = choices([randint(30,60),10800],weights=[0.97,0.03])[0] #Takes a break once in a while
 
         print(f'Waiting {secs} seconds')
 
