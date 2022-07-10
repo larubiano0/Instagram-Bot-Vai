@@ -142,7 +142,6 @@ class Bot:
 
         not_followers = not_followers[1:] #Removes the first one from the list
 
-
         #TODO correct expected value
         #TODO corregir lista
         #TODO maximum amounts of followers per csv
@@ -161,7 +160,8 @@ if __name__ == '__main__':
         """
         not_followers = bot.update(not_followers)
 
-        secs = choices([randint(30,60),10800],weights=[0.97,0.03])[0] #Takes a break once in a while
+        secs = choices([randint(180,540),7200],weights=[0.925,0.075])[0] #Expected value per hour 10 users
+                                                    #Expected value per day 98 follows
 
         print(f'Waiting {secs} seconds')
 
