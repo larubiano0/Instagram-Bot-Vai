@@ -1,15 +1,16 @@
 import os
 
-directory = 'csvdata'
+DIRECTORY = 'csvdata'
+MAXRATIO = 0.2 #Maximum ratio of user to follow per account (20% default)
 
-data = {}
+DATA = {}
 
-for file in os.listdir(directory): #For each filename in the directory
-    path = os.path.join(directory, file) #corpus/python.txt
+for file in os.listdir(DIRECTORY): #For each filename in the directory
+    path = os.path.join(DIRECTORY, file) #corpus/python.txt
     file = file[:-4] #Removes .csv
-    data[file] = path            
+    DATA[file] = path            
 
-iglogin = {}
+IGLOGIN = {}
 
 with open('iglogin.env') as f:
 

@@ -6,22 +6,23 @@ import pandas as pd
 from time import sleep
 from typing import Dict, List
 from random import (randint,sample,choices)
+import json
 
 from instagrapi import Client
 from instagrapi.types import UserShort
 
-IG_USERNAME = iglogin['IGUSERNAME']
-IG_PASSWORD = iglogin['IGPASSWORD']
+IG_USERNAME = IGLOGIN['IGUSERNAME']
+IG_PASSWORD = IGLOGIN['IGPASSWORD']
 IG_CREDENTIAL_PATH = './ig_settings.json'
 
 
-igaccounts = ['Username']
+igaccounts = ['prueba',]
 datasets = {}
 total = {} #Total followed users per account account:[followed,total]
 
 for account in igaccounts:
-    csvdata = pd.read_csv(data['prueba'])
-    datasets[account] = csvdata['userName'].tolist()
+    csvdata = pd.read_csv(DATA['prueba'])
+    datasets[account] = csvdata['Username'].tolist()
     total[account] = [0,len(csvdata)]
 
 class Bot:

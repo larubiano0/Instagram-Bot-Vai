@@ -4,7 +4,8 @@ def isNaN(num):
 
 class IgAccount:
 
-    def __init__(self, followers, followed_by_VAI=0,ratio=0):
+    def __init__(self, name, followers, followed_by_VAI=0,ratio=0):
+        self.name = name
         self.followers = followers
         self.followed_by_VAI = followed_by_VAI
         self.ratio = ratio
@@ -14,4 +15,4 @@ class IgAccount:
         self.ratio = round(self.followed_by_VAI / self.followers,2)
         
     def __str__(self):
-        return f'followers:{self.followers}, followed_by_VAI:{self.followed_by_VAI}, ratio:{self.ratio}'
+        return f'name: {self.name}, followers:{self.followers}, followed_by_VAI:{self.followed_by_VAI}, ratio:{self.ratio}'
