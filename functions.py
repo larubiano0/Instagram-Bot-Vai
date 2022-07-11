@@ -9,7 +9,7 @@ class IgAccount:
         self.followed_by_VAI = followed_by_VAI
         self.ratio = ratio
     
-    def followedOne(self):
+    def addFollowed(self):
         self.followed_by_VAI = self.followed_by_VAI + 1
         self.ratio = round(self.followed_by_VAI / self.followers,2)
         
