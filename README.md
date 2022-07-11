@@ -1,8 +1,10 @@
 # Instagram Bot Vai
- Follows people from dataset on Instagram
+ Tools for following/unfollowing Instagram accounts, using CSV's and Instagrapi library
 
 Usage: 
-1. Delete ig_settings.json
-2. Fill info @ iglogin.env
-3. Select dataset @ line 17 bot.py
-4. Run bot.py
+1. cd to the directory where INSTAGRAM-BOT-VAI is located
+2. run: pip install -r requirements.txt
+3. Delete ig_settings.json
+4. Fill info @ iglogin.env
+5. Select dataset @ bot.py
+6. Run bot.py
