@@ -160,8 +160,7 @@ if __name__ == '__main__':
         """
         not_followers = bot.update(not_followers)
 
-        secs = choices([randint(180,540),7200],weights=[0.925,0.075])[0] #Expected value per hour 10 users
-                                                    #Expected value per day 98 follows
+        secs = choices([randint(600,1200),5000],weights=[0.925,0.075])[0] 
 
         print(f'Waiting {secs} seconds')
 
