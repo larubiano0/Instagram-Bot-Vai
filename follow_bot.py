@@ -14,8 +14,15 @@ IG_USERNAME = iglogin['IGUSERNAME']
 IG_PASSWORD = iglogin['IGPASSWORD']
 IG_CREDENTIAL_PATH = './ig_settings.json'
 
-nf = pd.read_csv(data['prueba']) #Dataset
-not_followers = nf['userName'].tolist()
+
+igaccounts = ['Username']
+datasets = {}
+total = {} #Total followed users per account account:[followed,total]
+
+for account in igaccounts:
+    csvdata = pd.read_csv(data['prueba'])
+    datasets[account] = csvdata['userName'].tolist()
+    total[account] = [0,len(csvdata)]
 
 class Bot:
     _cl = None
@@ -142,9 +149,9 @@ class Bot:
 
         not_followers = not_followers[1:] #Removes the first one from the list
 
-        #TODO correct expected value
+        #TODO check if already followed
         #TODO corregir lista
-        #TODO maximum amounts of followers per csv
+        #TODO maximum amounts of followers per csv (JSON)
         #TODO unfollow protocol
         #TODO active users
 
@@ -158,7 +165,7 @@ if __name__ == '__main__':
         """
         Infnit loop
         """
-        not_followers = bot.update(not_followers)
+        not_followers = bot.update(datasets)
 
         secs = choices([randint(600,1200),5000],weights=[0.925,0.075])[0] 
 
