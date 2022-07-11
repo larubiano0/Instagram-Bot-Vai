@@ -12,3 +12,6 @@ class IgAccount:
     def followedOne(self):
         self.followed_by_VAI = self.followed_by_VAI + 1
         self.ratio = round(self.followed_by_VAI / self.followers,2)
+        
+    def __str__(self):
+        return f'followers:{self.followers}, followed_by_VAI:{self.followed_by_VAI}, ratio:{self.ratio}'
