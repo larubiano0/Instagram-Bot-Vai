@@ -1,7 +1,3 @@
-random
 pandas
-time
 instagrapi
 matplotlib
-json
-shutil
