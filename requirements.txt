@@ -4,3 +4,4 @@ time
 instagrapi
 matplotlib
 json
+shutil

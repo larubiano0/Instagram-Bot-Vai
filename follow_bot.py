@@ -5,6 +5,8 @@ import pandas as pd
 from time import sleep
 from random import (randint,sample,choices)
 import json
+import shutil
+
 
 from instagrapi import Client
 from instagrapi.types import UserShort
@@ -80,7 +82,7 @@ class Bot:
         
         return self._cl.user_follow(userid)
     
-    def update(self, datasets):
+    def update(self, datasets, jsondata):
         """
         Chooses first user_id from random dataset,
         Checks if active (more than MINFOLLOWERS followers, otherwise continues)
@@ -88,7 +90,7 @@ class Bot:
         Prints username
         Removes user_id from list
         Removes user from csv
-        follow_track.json updates ratio and followed_by_VAI
+        updates follow_track.json (ratio and followed_by_VAI)
         returns datasets
 
         Parameters
@@ -106,8 +108,17 @@ class Bot:
         accountinfo = self._cl.user_info(userID).dict()
         followercount = accountinfo['followercount']
 
-        if followercount < MINFOLLOWERS:
-            return datasets
+
+        if jsondata[account]['ratio'] > MAXRATIO:
+
+            del datasets[account] #Deletes the account from datasets, therefore it can't be chosen anymore
+
+            return datasets, jsondata
+
+        if followercount < MINFOLLOWERS: 
+
+            return datasets, jsondata
+
 
         username = self._cl.username_from_user_id(userID)
 
@@ -115,11 +126,38 @@ class Bot:
 
             print(f'{username} followed with success')
 
+            datasets[account] = datasets[account][1:]
+
+            with open(DATA[account],'r') as f: # DELETES ROW FROM CSV
+                with open('temp.csv','w') as f1:
+
+                    c = 0 
+                    for line in f:
+
+                        if c == 1: # SKIPS USER
+                            continue
+
+                        f1.write(line)
+                        c+=1
+            
+            shutil.copyfile('temp.csv', DATA[account]) #Overwirtes DATA[account]
+
+
+            accountdata = IgAccount(account,datasets[account],jsondata[account]['followed_by_VAI'],jsondata[account]['ratio']) #Update json data and follow_track.json
+
+            accountdata.addFollowed()
+
+            jsondata[account] = {'name':accountdata.name,'followers':accountdata.followers,
+                             'followed_by_VAI': accountdata.followed_by_VAI, 'ratio':accountdata.ratio}
+
+            with open('follow_track.json', 'w') as f:
+                json.dump(jsondata, f)
+
         else:
 
             print(f'There has been a problem while trying to follow {username}')
 
-
+        return datasets, jsondata
 
 
 if __name__ == '__main__':
@@ -137,4 +175,6 @@ if __name__ == '__main__':
 
         sleep(secs) #In seconds
 
-        #TODO: fix end 
+        if datasets == {}: #RATIO has been followed for all csv's
+
+            break
