@@ -38,9 +38,6 @@ for account in IGACCOUNTS:
 with open('follow_track.json', 'w') as f:
     json.dump(jsondata, f)
 
-print(jsondata)
-
-'''
 class Bot:
     _cl = None
 
@@ -83,79 +80,6 @@ class Bot:
         """
         
         return self._cl.user_follow(userid)
-
-    def unfollow_by_username(self, username) -> bool:
-        """
-        Unfollow a user
-        Parameters
-        ----------
-        username: str
-            Username for an Instagram account
-        Returns
-        -------
-        bool
-            A boolean value
-        """
-        userid = self._cl.user_id_from_username(username)
-        return self._cl.user_unfollow(userid)
-    
-    def get_followers(self, amount: int = 0) -> Dict[int, UserShort]:
-        """
-        Get bot's followers
-        Parameters
-        ----------
-        amount: int, optional
-            Maximum number of media to return, default is 0 - Inf
-        Returns
-        -------
-        Dict[int, UserShort]
-            Dict of user_id and User object
-        """
-        return self._cl.user_followers(self._cl.user_id, amount=amount)
-    
-    def get_followers_usernames(self, amount: int = 0) -> List[str]:
-        """
-        Get bot's followers usernames
-        Parameters
-        ----------
-        amount: int, optional
-            Maximum number of media to return, default is 0 - Inf
-        Returns
-        -------
-        List[str]
-            List of usernames
-        """
-        followers = self._cl.user_followers(self._cl.user_id, amount=amount)
-        return [user.username for user in followers.values()]
-
-    def get_following(self, amount: int = 0) -> Dict[int, UserShort]:
-        """
-        Get bot's followed users
-        Parameters
-        ----------
-        amount: int, optional
-            Maximum number of media to return, default is 0 - Inf
-        Returns
-        -------
-        Dict[int, UserShort]
-            Dict of user_id and User object
-        """
-        return self._cl.user_following(self._cl.user_id, amount=amount)
-    
-    def get_following_usernames(self, amount: int = 0) -> List[str]:
-        """
-        Get bot's followed usernames
-        Parameters
-        ----------
-        amount: int, optional
-            Maximum number of media to return, default is 0 - Inf
-        Returns
-        -------
-        List[str]
-            List of usernames
-        """
-        following = self._cl.user_following(self._cl.user_id, amount=amount)
-        return [user.username for user in following.values()]
     
     def update(self, not_followers):
         """
@@ -190,6 +114,7 @@ class Bot:
         return not_followers
 
 
+'''
 if __name__ == '__main__':
     bot = Bot()
 
@@ -210,5 +135,4 @@ if __name__ == '__main__':
             print('Everyone was followed')
 
             break
-
 '''
