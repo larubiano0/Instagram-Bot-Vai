@@ -6,5 +6,5 @@ Usage:
 2. run: pip install -r requirements.txt
 3. Delete ig_settings.json, temp.csv & follow_track.json
 4. Fill info @ iglogin.env
-5. Select dataset @ bot.py
+5. Select datasets @ config.py
 6. Run bot.py
