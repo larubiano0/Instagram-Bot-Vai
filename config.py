@@ -1,7 +1,11 @@
 import os
 
+
+
 DIRECTORY = 'csvdata'
 MAXRATIO = 0.2 #Maximum ratio of user to follow per account (20% default)
+
+IG_CREDENTIAL_PATH = './ig_settings.json'
 
 DATA = {}
 

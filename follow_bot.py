@@ -13,16 +13,13 @@ from instagrapi.types import UserShort
 
 IG_USERNAME = IGLOGIN['IGUSERNAME']
 IG_PASSWORD = IGLOGIN['IGPASSWORD']
-IG_CREDENTIAL_PATH = './ig_settings.json'
 
-
-igaccounts = ['prueba',]
 datasets = {}
 total = {} #Total followed users per account account:[followed,total]
 
-for account in igaccounts:
-    csvdata = pd.read_csv(DATA['prueba'])
-    datasets[account] = csvdata['Username'].tolist()
+for account in IGACCOUNTS:
+    csvdata = pd.read_csv(DATA[account])
+    datasets[account] = csvdata['User ID'].tolist()
     total[account] = [0,len(csvdata)]
 
 class Bot:
@@ -39,7 +36,7 @@ class Bot:
     
     def follow_by_username(self, username) -> bool:
         """
-        Follow a user
+        Follow a username
         Parameters
         ----------
         username: str
@@ -51,6 +48,21 @@ class Bot:
         """
         
         userid = self._cl.user_id_from_username(username)
+        return self._cl.user_follow(userid)
+
+    def follow_by_userid(self, userid) -> bool:
+        """
+        Follow a user
+        Parameters
+        ----------
+        username: str
+            Username for an Instagram account
+        Returns
+        -------
+        bool
+            A boolean value
+        """
+        
         return self._cl.user_follow(userid)
 
     def unfollow_by_username(self, username) -> bool:
