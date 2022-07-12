@@ -1,7 +1,6 @@
 from config import *
 from functions import *
 
-import os
 import pandas as pd
 from time import sleep
 from typing import Dict, List
@@ -15,13 +14,33 @@ IG_USERNAME = IGLOGIN['IGUSERNAME']
 IG_PASSWORD = IGLOGIN['IGPASSWORD']
 
 datasets = {}
-total = {} #Total followed users per account account:[followed,total]
+
+try: 
+    with open('follow_track.json','r') as json_file:
+        jsondata = json.load(json_file)
+except:
+    with open('follow_track.json', 'w') as json_file:
+        print("follow_track.json created with success")
+    jsondata = {}
+
 
 for account in IGACCOUNTS:
     csvdata = pd.read_csv(DATA[account])
     datasets[account] = csvdata['User ID'].tolist()
-    total[account] = [0,len(csvdata)]
+    
+    if account not in jsondata:
 
+        accountdata = IgAccount(account,len(csvdata),0,0)
+
+        jsondata[account] = {'name':accountdata.name,'followers':accountdata.followers,
+                             'followed_by_VAI': accountdata.followed_by_VAI, 'ratio':accountdata.ratio}
+
+with open('follow_track.json', 'w') as f:
+    json.dump(jsondata, f)
+
+print(jsondata)
+
+'''
 class Bot:
     _cl = None
 
@@ -192,4 +211,4 @@ if __name__ == '__main__':
 
             break
 
-            
+'''

@@ -16,3 +16,6 @@ class IgAccount:
         
     def __str__(self):
         return f'name: {self.name}, followers:{self.followers}, followed_by_VAI:{self.followed_by_VAI}, ratio:{self.ratio}'
+    
+    def __repr__(self):
+        return f'name: {self.name}, followers:{self.followers}, followed_by_VAI:{self.followed_by_VAI}, ratio:{self.ratio}'
