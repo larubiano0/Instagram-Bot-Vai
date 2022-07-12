@@ -171,7 +171,7 @@ if __name__ == '__main__':
         """
         Infnit loop
         """
-        datasets = bot.update(datasets, jsondata)
+        datasets, jsondata = bot.update(datasets, jsondata)
 
         secs = choices([randint(600,1200),5000],weights=[0.925,0.075])[0] 
 
