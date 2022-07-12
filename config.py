@@ -4,7 +4,8 @@ IGACCOUNTS = ['confesandes',
               'confesionescesa',
               'glucloudstop',
               'sinfonia_uniandes',
-              'coinkapp']
+              'coinkapp',
+              'encuesta']
 
 DIRECTORY = 'csvdata'
 MAXRATIO = 0.2 #Maximum ratio of user to follow per account (20% default)

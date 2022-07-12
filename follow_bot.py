@@ -116,19 +116,20 @@ class Bot:
 
         if followercount < MINFOLLOWERS: 
 
-            return datasets, jsondata
-
-
-        username = self._cl.username_from_user_id(userID)
-
-        if self.follow_by_userid(userID):
-
-            print(f'{username} followed with success')
+            pass
 
         else:
 
-            print(f'There has been a problem while trying to follow {username}')
-            print('Probably the account is private or already followed')
+            username = self._cl.username_from_user_id(userID)
+
+            if self.follow_by_userid(userID):
+
+                print(f'{username} followed with success')
+
+            else:
+
+                print(f'There has been a problem while trying to follow {username}')
+                print('Probably the account is private or already followed')
 
         datasets[account] = datasets[account][1:]
 
