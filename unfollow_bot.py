@@ -10,8 +10,8 @@ from random import (randint,sample,choices)
 from instagrapi import Client
 from instagrapi.types import UserShort
 
-IG_USERNAME = iglogin['IGUSERNAME']
-IG_PASSWORD = iglogin['IGPASSWORD']
+IG_USERNAME = IGLOGIN['IGUSERNAME']
+IG_PASSWORD = IGLOGIN['IGPASSWORD']
 IG_CREDENTIAL_PATH = './ig_settings.json'
 
 
