@@ -106,8 +106,7 @@ class Bot:
         account = choices(list(datasets.keys()))[0]
         userID = datasets[account][0]
         accountinfo = self._cl.user_info(userID).dict()
-        followercount = accountinfo['followercount']
-
+        followercount = accountinfo['follower_count']
 
         if jsondata[account]['ratio'] > MAXRATIO:
 
@@ -126,36 +125,40 @@ class Bot:
 
             print(f'{username} followed with success')
 
-            datasets[account] = datasets[account][1:]
-
-            with open(DATA[account],'r') as f: # DELETES ROW FROM CSV
-                with open('temp.csv','w') as f1:
-
-                    c = 0 
-                    for line in f:
-
-                        if c == 1: # SKIPS USER
-                            continue
-
-                        f1.write(line)
-                        c+=1
-            
-            shutil.copyfile('temp.csv', DATA[account]) #Overwirtes DATA[account]
-
-
-            accountdata = IgAccount(account,datasets[account],jsondata[account]['followed_by_VAI'],jsondata[account]['ratio']) #Update json data and follow_track.json
-
-            accountdata.addFollowed()
-
-            jsondata[account] = {'name':accountdata.name,'followers':accountdata.followers,
-                             'followed_by_VAI': accountdata.followed_by_VAI, 'ratio':accountdata.ratio}
-
-            with open('follow_track.json', 'w') as f:
-                json.dump(jsondata, f)
-
         else:
 
             print(f'There has been a problem while trying to follow {username}')
+            print('Probably the account is private or already followed')
+
+        datasets[account] = datasets[account][1:]
+
+        with open(DATA[account],'r') as f: # DELETES ROW FROM CSV
+            with open('temp.csv','w') as f1:
+
+                c = 0 
+                for line in f:
+
+                    if c == 1: # SKIPS USER
+                        c +=1 
+                        continue
+
+                    f1.write(line)
+                    c+=1
+            
+        shutil.copyfile('temp.csv', DATA[account]) #Overwirtes DATA[account]
+
+
+        accountdata = IgAccount(account,jsondata[account]['followers'],jsondata[account]['followed_by_VAI'],jsondata[account]['ratio']) #Update json data and follow_track.json
+
+        accountdata.addFollowed()
+
+        jsondata[account] = {'name':accountdata.name,'followers':accountdata.followers,
+                             'followed_by_VAI': accountdata.followed_by_VAI, 'ratio':accountdata.ratio}
+
+        with open('follow_track.json', 'w') as f:
+            json.dump(jsondata, f)
+
+        print(account, userID) #DELETE
 
         return datasets, jsondata
 
@@ -167,7 +170,7 @@ if __name__ == '__main__':
         """
         Infnit loop
         """
-        datasets = bot.update(datasets)
+        datasets = bot.update(datasets, jsondata)
 
         secs = choices([randint(600,1200),5000],weights=[0.925,0.075])[0] 
 
