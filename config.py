@@ -8,6 +8,7 @@ IGACCOUNTS = ['confesandes',
 
 DIRECTORY = 'csvdata'
 MAXRATIO = 0.2 #Maximum ratio of user to follow per account (20% default)
+MINFOLLOWERS = 50 #Minimum number of followers to follow an account
 
 IG_CREDENTIAL_PATH = './ig_settings.json'
 

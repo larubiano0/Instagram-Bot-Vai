@@ -1,7 +1,6 @@
 random
 pandas
 time
-typing
 instagrapi
 matplotlib
 json

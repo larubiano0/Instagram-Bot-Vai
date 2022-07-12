@@ -3,7 +3,6 @@ from functions import *
 
 import pandas as pd
 from time import sleep
-from typing import Dict, List
 from random import (randint,sample,choices)
 import json
 
@@ -13,7 +12,7 @@ from instagrapi.types import UserShort
 IG_USERNAME = IGLOGIN['IGUSERNAME']
 IG_PASSWORD = IGLOGIN['IGPASSWORD']
 
-datasets = {}
+datasets = {} # account:[followers_ids] 
 
 try: 
     with open('follow_track.json','r') as json_file:
@@ -25,7 +24,7 @@ except:
 
 
 for account in IGACCOUNTS:
-    csvdata = pd.read_csv(DATA[account])
+    csvdata = pd.read_csv(DATA[account],index_col=False)
     datasets[account] = csvdata['User ID'].tolist()
     
     if account not in jsondata:
@@ -81,40 +80,48 @@ class Bot:
         
         return self._cl.user_follow(userid)
     
-    def update(self, not_followers):
+    def update(self, datasets):
         """
-        Follows first user in not_followers
+        Chooses first user_id from random dataset,
+        Checks if active (more than MINFOLLOWERS followers, otherwise continues)
+        Follows user
+        Prints username
+        Removes user_id from list
+        Removes user from csv
+        follow_track.json updates ratio and followed_by_VAI
+        returns datasets
+
         Parameters
         ----------
-        not_followers: list
-            List of Instagram usernames
+        datasets: dict
+            account:[followers_ids] 
+
         Returns
         -------
-        List[str]
-            List of Instagram usernames, removing the first user
+        datasets: dict
+            account:[followers_ids] 
         """
-        username = not_followers[0]
+        account = choices(list(datasets.keys()))[0]
+        userID = datasets[account][0]
+        accountinfo = self._cl.user_info(userID).dict()
+        followercount = accountinfo['followercount']
 
-        if self.follow_by_username(username):
+        if followercount < MINFOLLOWERS:
+            return datasets
+
+        username = self._cl.username_from_user_id(userID)
+
+        if self.follow_by_userid(userID):
 
             print(f'{username} followed with success')
 
-        else: 
+        else:
 
             print(f'There has been a problem while trying to follow {username}')
 
-        not_followers = not_followers[1:] #Removes the first one from the list
-
-        #TODO check if already followed
-        #TODO corregir lista
-        #TODO maximum amounts of followers per csv (JSON)
-        #TODO unfollow protocol
-        #TODO active users
-
-        return not_followers
 
 
-'''
+
 if __name__ == '__main__':
     bot = Bot()
 
@@ -122,7 +129,7 @@ if __name__ == '__main__':
         """
         Infnit loop
         """
-        not_followers = bot.update(datasets)
+        datasets = bot.update(datasets)
 
         secs = choices([randint(600,1200),5000],weights=[0.925,0.075])[0] 
 
@@ -130,9 +137,4 @@ if __name__ == '__main__':
 
         sleep(secs) #In seconds
 
-        if len(not_followers) == 0:
-
-            print('Everyone was followed')
-
-            break
-'''
+        #TODO: fix end 
