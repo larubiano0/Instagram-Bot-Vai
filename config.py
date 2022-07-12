@@ -28,4 +28,4 @@ with open('iglogin.env') as f:
             continue
         key, value = line.strip().split('=', 1)
 
-        iglogin[key] = value
+        IGLOGIN[key] = value
