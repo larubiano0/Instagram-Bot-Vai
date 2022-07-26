@@ -1,6 +1,7 @@
 from config import *
 from functions import *
 
+
 import pandas as pd
 from time import sleep
 from random import (randint,sample,choices)
@@ -11,10 +12,13 @@ import shutil
 from instagrapi import Client
 from instagrapi.types import UserShort
 
+
 IG_USERNAME = IGLOGIN['IGUSERNAME']
 IG_PASSWORD = IGLOGIN['IGPASSWORD']
 
+
 datasets = {} # account:[followers_ids] 
+
 
 try: 
     with open('follow_track.json','r') as json_file:
@@ -36,8 +40,10 @@ for account in IGACCOUNTS:
         jsondata[account] = {'name':accountdata.name,'followers':accountdata.followers,
                              'followed_by_VAI': accountdata.followed_by_VAI, 'ratio':accountdata.ratio}
 
+
 with open('follow_track.json', 'w') as f:
     json.dump(jsondata, f)
+
 
 class Bot:
     _cl = None
