@@ -6,7 +6,7 @@ seconds = []
 for _ in range(10000):
     for j in range(100000):
         s = []
-        s.append(choices([randint(600,1200),5000],weights=[0.925,0.075])[0])
+        s.append(randint(564,1164))
     seconds.append(sum(s)/len(s))  
     
     if _%500 == 0: 
