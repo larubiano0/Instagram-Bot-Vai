@@ -130,14 +130,22 @@ class Bot:
 
             username = self._cl.username_from_user_id(userID)
 
-            if self.follow_by_userid(userID):
+            try:
 
-                print(f'{username} followed with success')
+                if self.follow_by_userid(userID):
 
-            else:
+                    print(f'{username} followed with success')
 
-                print(f'There has been a problem while trying to follow {username}')
-                print('Probably the account is private or already followed')
+                else:
+
+                    print(f'There has been a problem while trying to follow {username}')
+                    print('Probably the account is private or already followed')
+
+            except Exception as e: 
+
+                print(e)
+
+                print('Something went wrong')
 
         datasets[account] = datasets[account][1:]
 
