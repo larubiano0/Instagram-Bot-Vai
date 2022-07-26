@@ -187,7 +187,7 @@ if __name__ == '__main__':
         """
         datasets, jsondata = bot.update(datasets, jsondata)
 
-        secs = randint(564,1164) #Expected value: 864 
+        secs = randint(564,1164) #Expected value: 864. 100 users per day
 
         print(f'Waiting {secs} seconds')
 
