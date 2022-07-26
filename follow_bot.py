@@ -48,10 +48,10 @@ class Bot:
             self._cl.load_settings(IG_CREDENTIAL_PATH)
             self._cl.login(IG_USERNAME, IG_PASSWORD)
         else:
-            self._cl.set_proxy('SOCKS4://bogota:proxy@200.106.216.64:63253') #Proxy from https://www.proxydocker.com/en/proxy/200.106.216.64:63253
-            self._cl.set_locale('es_CO')
+            self._cl.set_proxy(PROXYSTR) #Proxy from https://www.proxydocker.com/en/proxy/200.106.216.64:63253
+            self._cl.set_locale(PROXYLOCALE)
 
-            self._cl.set_timezone_offset(-5 * 3600)
+            self._cl.set_timezone_offset(TIMEZONE_OFFSET)
 
 
             self._cl.login(IG_USERNAME, IG_PASSWORD)
