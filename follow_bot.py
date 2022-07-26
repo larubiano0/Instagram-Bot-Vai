@@ -114,6 +114,8 @@ class Bot:
         accountinfo = self._cl.user_info(userID).dict()
         followercount = accountinfo['follower_count']
 
+        sleep(randint(7,23)) #Sleeps random time between 7 and 23 seconds between getting account's info and following an user
+
         if jsondata[account]['ratio'] > MAXRATIO:
 
             del datasets[account] #Deletes the account from datasets, therefore it can't be chosen anymore
