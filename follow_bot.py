@@ -1,16 +1,13 @@
 from config import *
 from functions import *
 
-
+from instagrapi import Client
 import pandas as pd
 from time import sleep
-from random import (randint,sample,choices)
+from random import (randint,choices)
 import json
 import shutil
-
-
-from instagrapi import Client
-from instagrapi.types import UserShort
+from traceback import print_exc
 
 
 IG_USERNAME = IGLOGIN['IGUSERNAME']
@@ -147,9 +144,9 @@ class Bot:
                     print(f'There has been a problem while trying to follow {username}')
                     print('Probably the account is private or already followed')
 
-            except Exception as e: 
+            except Exception: 
 
-                print(e)
+                print_exc()
 
                 print('Something went wrong')
 
