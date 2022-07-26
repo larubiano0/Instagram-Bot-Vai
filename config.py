@@ -38,6 +38,6 @@ with open('iglogin.env') as f:
 ################################################################ Proxy configuration
 
 
-PROXYSTR = 'SOCKS4://bogota:proxy@200.106.216.64:63253'
+PROXYSTR = 'SOCKS4://bogota:proxy@200.106.216.64:21'
 PROXYLOCALE = 'es_CO'
 TIMEZONE_OFFSET = -5 * 3600
