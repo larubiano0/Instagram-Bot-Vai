@@ -52,4 +52,6 @@ DEVICE = {"app_version": "244.1.0.19.110",
                  "cpu":"exynos2100",
                   "version_code":"384108453"}
 USER_AGENT = 'Mozilla/5.0 (Linux; Android 12; SM-G998B Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/103.0.5060.71 Mobile Safari/537.36 Instagram 244.1.0.19.110 Android (31/12; 480dpi; 1080x2280; samsung; SM-G998B; p3s; exynos2100; es_CO; 384108453)'
+COUNTRY = 'CO'
+COUNTRY_CODE = 57
 #Country changed in useragent https://user-agents.net/s/DHkwD1EwLj
