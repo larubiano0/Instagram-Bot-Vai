@@ -138,7 +138,8 @@ class Bot:
             try:
 
                 if self.follow_by_userid(userID):
-
+                    
+                    sleep(randint(7,23))
                     print(f'{username} followed with success')
 
                 else:
