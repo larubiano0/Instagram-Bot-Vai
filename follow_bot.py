@@ -51,14 +51,15 @@ class Bot:
             self._cl.load_settings(IG_CREDENTIAL_PATH)
             self._cl.login(IG_USERNAME, IG_PASSWORD)
         else:
-            self._cl.set_proxy(PROXYSTR) 
-            self._cl.set_locale(PROXYLOCALE)
-            self._cl.set_timezone_offset(TIMEZONE_OFFSET)
-            self._cl.set_device(DEVICE)
-            self._cl.set_user_agent(USER_AGENT)
-            self._cl.set_country(COUNTRY)
-            self._cl.set_country_code(COUNTRY_CODE)
-            print(IG_USERNAME, IG_PASSWORD) #DEBUG
+            #self._cl.set_proxy(PROXYSTR) 
+            #self._cl.set_locale(PROXYLOCALE)
+            #self._cl.set_timezone_offset(TIMEZONE_OFFSET)
+            #self._cl.set_device(DEVICE)
+            #self._cl.set_user_agent(USER_AGENT)
+            #self._cl.set_country(COUNTRY)
+            #self._cl.set_country_code(COUNTRY_CODE)
+            print(IG_USERNAME) #DEBUG
+            print(IG_PASSWORD) #DEBUG
             self._cl.login(IG_USERNAME, IG_PASSWORD)
             self._cl.dump_settings(IG_CREDENTIAL_PATH)
     
