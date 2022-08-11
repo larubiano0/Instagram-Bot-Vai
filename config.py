@@ -38,7 +38,7 @@ with open('iglogin.env') as f:
 ################################################################ Proxy configuration
 
 #http://free-proxy.cz/en/proxylist/country/CO/all/uptime/all
-PROXYSTR = 'HTTP://bogota:proxy@181.118.158.130:999' #TODO fix proxy
+PROXYSTR = "HTTP://14af0a20657db:69d329f469@187.17.214.238:12323"
 PROXYLOCALE = 'es_CO'
 TIMEZONE_OFFSET = -5 * 3600
 DEVICE = {"app_version": "244.1.0.19.110",
