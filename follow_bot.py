@@ -58,7 +58,7 @@ class Bot:
             self._cl.set_user_agent(USER_AGENT)
             self._cl.set_country(COUNTRY)
             self._cl.set_country_code(COUNTRY_CODE)
-
+            print(IG_USERNAME, IG_PASSWORD) #DEBUG
             self._cl.login(IG_USERNAME, IG_PASSWORD)
             self._cl.dump_settings(IG_CREDENTIAL_PATH)
     
